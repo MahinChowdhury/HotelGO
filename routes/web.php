@@ -39,6 +39,15 @@ Route::post('/users/create',[userController::class,'create'])->middleware('guest
 Route::post("/users/logout",[userController::class,'logout'])->middleware('auth');
 
 //Admin Section
-Route::get("/admin",[adminController::class,'showLoginform']);
-Route::post("admin/authenticate",[adminController::class,'authenticate']);
+Route::get('/admin/login', [adminController::class,'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [adminController::class,'login'])->name('admin.login.submit');
 
+Route::get("/admin/dashboard",[adminController::class,'showDashboard']);
+Route::post("admin/admin/logout",[adminController::class,'showDashboard']);
+
+Route::get("admin/user_queries",[userQueryController::class,'showAllQueries']);
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

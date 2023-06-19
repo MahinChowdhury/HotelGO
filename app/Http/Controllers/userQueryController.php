@@ -21,4 +21,10 @@ class userQueryController extends Controller
 
         return redirect('/contact')->with('success','Message sent successfully!');
     }
+
+    public function showAllQueries(){
+        return view("admin.userqueries",[
+            'queries' => userQuery::all()
+        ]);
+    }
 }
