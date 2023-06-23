@@ -29,20 +29,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php
-                                $i = 0;
                                 @foreach($queries as $query)
                                     <tr>
-                                        <td>$i</td>
                                         <td>{{$query->name}}</td>
                                         <td>{{$query->email}}</td>
                                         <td>{{$query->subject}}</td>
                                         <td>{{$query->message}}</td>
                                         <td>{{$query->created_at}}</td>
                                     </tr>
-                                    $i++;
                                 @endforeach
-                            ?>
                             </tbody>
                         </table>
                     </div>
