@@ -54,7 +54,7 @@ class roomController extends Controller
 
         $file = $request->file('image');
 
-        if($file->move("upload",$file->getClientOriginalName())){
+        if($file->move("upload/rooms",$file->getClientOriginalName())){
 
             // Get the original file name
             $filename = $file->getClientOriginalName();
@@ -88,7 +88,7 @@ class roomController extends Controller
 
     public function destroyRoom(Rooms $room)
     {
-        $filePath = public_path('upload/' . $room->img);
+        $filePath = public_path('upload/rooms' . $room->img);
 
         // Delete the file if it exists
         if (File::exists($filePath)) {

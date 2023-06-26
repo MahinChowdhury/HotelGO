@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Facility;
+use App\Models\Rooms;
 use Illuminate\Http\Request;
 
 class newController extends Controller
@@ -12,7 +13,10 @@ class newController extends Controller
         return view('index');
     }
     public function rooms(){
-        return view('rooms');
+        return view('rooms',[
+            'rooms' => Rooms::all()
+        ]);
+
     }
     public function contact(){
         return view('contact');

@@ -44,7 +44,7 @@
                             @foreach($rooms as $room)
                                 <td>{{$index = $index + 1}}</td>
                                 <td>{{$room->name}}</td>
-                                <td><img src="{{ asset('upload/'. $room->img) }}" width="40px"></td>
+                                <td><img src="{{ asset('upload/rooms/'. $room->img) }}" width="40px"></td>
                                 <td>{{$room->area}}</td>
                                 <td>{{$room->guests}}</td>
                                 <td>{{$room->category}}</td>
@@ -122,7 +122,7 @@
                                     @foreach($features as $feature)
                                         <div class="col-md-3">
                                             <label>
-                                                <input type="checkbox" name="features[]" value="{{$feature->id}}" class="form-check-input shadow-none">
+                                                <input type="checkbox" name="features[]" value="{{$feature->id}}" class="form-check-input shadow-none"
                                                 @if(isset($selectedFeatured) && in_array($feature->id, $selectedFeatured)) checked @endif>
                                                 {{$feature->name}}
                                             </label>

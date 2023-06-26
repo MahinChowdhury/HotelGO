@@ -18,4 +18,8 @@ class Facility extends Model
 
         return parent::delete();
     }
+
+    public function rooms(){
+        $this->belongsToMany(Rooms::class,'room_facilities','facilities_id','room_id');
+    }
 }

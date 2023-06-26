@@ -18,4 +18,14 @@ class Rooms extends Model
         'category',
         'image'
     ];
+
+    public function features()
+    {
+        return $this->belongsToMany(Feature::class, 'room_features', 'rooms_id', 'feature_id');
+    }
+
+    public function facilities(){
+        return $this->belongsToMany(Facility::class,'room_facilities','room_id','facilities_id');
+    }
+
 }

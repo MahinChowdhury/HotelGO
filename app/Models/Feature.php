@@ -21,4 +21,10 @@ class Feature extends Model
         return parent::delete();
     }
 
+    public function rooms()
+    {
+        return $this->belongsToMany(Rooms::class, 'room_features', 'feature_id', 'rooms_id');
+    }
+
+
 }
