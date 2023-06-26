@@ -24,7 +24,8 @@ class userQueryController extends Controller
 
     public function showAllQueries(){
         return view("admin.userqueries",[
-            'queries' => userQuery::all()
+            'queries' => userQuery::all(),
+            'index' => 0
         ]);
     }
 }

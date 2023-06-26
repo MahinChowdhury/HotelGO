@@ -284,12 +284,48 @@ li{
     right : 25px;
 }
 
+#adminTopbar{
+    z-index: 999;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination .pagination-link {
+    display: inline-block;
+    padding: 8px 12px;
+    margin-right: 5px;
+    color: #333;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.pagination .pagination-link:hover {
+    background-color: #ddd;
+}
+
+.pagination .pagination-link.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination .pagination-link.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
 .sidebar {
     height: 100%;
     width: 200px;
     position: fixed;
     z-index: 0;
-    top: 65px;
+    top: 0px;
     left: 0;
     background-color: black;
     padding-top: 20px;
@@ -302,6 +338,30 @@ li{
     display: block;
 }
 .sidebar a:hover {
+    background-color: #555;
+    color: white;
+}
+
+
+.filterBar {
+    height: 100%;
+    width: 200px;
+    position: relative;
+    top : -40px;
+    z-index: 0;
+    left: -100px;
+    /*background-color: black;*/
+    padding-top: 20px;
+}
+.filterBar a {
+    margin-left: 15px;
+    padding: 8px 8px 8px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+}
+.filterBar a:hover {
     background-color: #555;
     color: white;
 }

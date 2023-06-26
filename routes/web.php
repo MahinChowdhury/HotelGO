@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\facilitiesController;
 use App\Http\Controllers\newController;
+use App\Http\Controllers\roomController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\userQueryController;
 use Illuminate\Support\Facades\Route;
@@ -45,9 +47,25 @@ Route::post('/admin/login', [adminController::class,'login'])->name('admin.login
 Route::get("/admin/dashboard",[adminController::class,'showDashboard']);
 Route::post("admin/admin/logout",[adminController::class,'showDashboard']);
 
+//Admin User Queries Section
 Route::get("admin/user_queries",[userQueryController::class,'showAllQueries']);
 
+//Admin Facilities & Features
 
-Auth::routes();
+//Features Section
+Route::get("admin/facilities",[facilitiesController::class,'showFacilities']);
+Route::post("admin/facilities/featureSubmit",[facilitiesController::class,'insertFeatures']);
+Route::delete('/features/{feature}', [facilitiesController::class,'destroyFeature'])->name('features.destroy');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Facilities Section
+Route::post('admin/facilities/facilitySubmit', [facilitiesController::class,'storeFacility'])->name('facilities.submit');
+Route::delete('/facilities/{facility}', [facilitiesController::class,'destroyFacility'])->name('facilities.destroy');
+
+//Admin Rooms Create section
+Route::get("admin/rooms",[roomController::class,'showAdminRoomCreate']);
+Route::post("admin/rooms/roomSubmit",[roomController::class,'storeRooms']);
+Route::delete('/rooms/{room}',[roomController::class,'destroyRoom'])->name('rooms.destroy');
+
+//Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

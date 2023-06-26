@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Facility;
 use Illuminate\Http\Request;
 
 class newController extends Controller
@@ -17,7 +18,9 @@ class newController extends Controller
         return view('contact');
     }
     public function facilities(){
-        return view('facilities');
+        return view('facilities',[
+            'facilities' => Facility::latest()->paginate(4)
+        ]);
     }
     public function about(){
         return view('about');

@@ -21,6 +21,7 @@
                         <table class="table table-hover border">
                             <thead class="sticky-top">
                             <tr class="bg-dark text-light">
+                                <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Subject</th>
@@ -31,6 +32,7 @@
                             <tbody>
                                 @foreach($queries as $query)
                                     <tr>
+                                        <td>{{$index = $index+1}}</td>
                                         <td>{{$query->name}}</td>
                                         <td>{{$query->email}}</td>
                                         <td>{{$query->subject}}</td>
