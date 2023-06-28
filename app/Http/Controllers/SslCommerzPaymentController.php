@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Rooms;
 use DateTime;
 use DB;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class SslCommerzPaymentController extends Controller
@@ -29,6 +31,14 @@ class SslCommerzPaymentController extends Controller
 
         // Validate dates.
 
+        $booking = new Booking;
+        $booking->user_name = Auth::user()->name;
+        $booking->room_name = $room->name;
+        $booking->booking_name = $frm_data['name'];
+        $booking->phone = $frm_data['phone'];
+        $booking->user_id = Auth::user()->id;
+
+
         if ($frm_data['checkin'] > $frm_data['checkout']) {
             return redirect()->back()->with("error", "Enter valid Check-In and Check-Out Dates");
         }
@@ -36,16 +46,27 @@ class SslCommerzPaymentController extends Controller
         $checkin_date = new DateTime($frm_data['checkin']);
         $checkout_date = new DateTime($frm_data['checkout']);
 
+        $booking->checkin = $checkin_date;
+        $booking->checkout = $checkout_date;
+
         $cnt_days = date_diff($checkout_date, $checkin_date)->days;
         $price = $cnt_days * $room->price;
+        $booking->amount = $price;
+        $booking->days = $cnt_days;
+        $booking->address = $frm_data['address'];
+
+        $booking->save();
+
+        $bookingId = $booking->id;
 
         return view('exampleHosted',[
             'room' => $room,
             'frm_data' => $frm_data,
             'price' => $price,
-            'days' => $cnt_days
+            'days' => $cnt_days,
+            'bookingId' => $bookingId,
+            'userId' => $booking->user_id
         ]);
-
     }
 
     public function index(Request $request)
@@ -58,6 +79,8 @@ class SslCommerzPaymentController extends Controller
         $post_data['total_amount'] = $request['customer_amount']; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
+        $post_data['user_id'] = $request['user_id'];
+        $post_data['booking_id'] = $request['booking_id'];
 
         # CUSTOMER INFORMATION
         $post_data['cus_name'] = $request['customer_name'];
@@ -103,7 +126,9 @@ class SslCommerzPaymentController extends Controller
                 'status' => 'Pending',
                 'address' => $post_data['cus_add1'],
                 'transaction_id' => $post_data['tran_id'],
-                'currency' => $post_data['currency']
+                'currency' => $post_data['currency'],
+                'bookingId' => $post_data['booking_id'],
+                'userId' => $post_data['user_id']
             ]);
 
         $sslc = new SslCommerzNotification();
@@ -190,7 +215,7 @@ class SslCommerzPaymentController extends Controller
 
     public function success(Request $request)
     {
-        echo "Transaction is Successful";
+        //echo "Transaction is Successful";
 
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
@@ -216,20 +241,21 @@ class SslCommerzPaymentController extends Controller
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Processing']);
 
-                echo "<br >Transaction is successfully Completed";
+                //echo "<br >Transaction is successfully Completed";
             }
         } else if ($order_details->status == 'Processing' || $order_details->status == 'Complete') {
             /*
              That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to udate database.
              */
-            echo "Transaction is successfully Completed";
+            //echo "Transaction is successfully Completed";
         } else {
             #That means something wrong happened. You can redirect customer to your product page.
-            echo "Invalid Transaction";
+            //echo "Invalid Transphp action";
         }
 
-        return view('payment.success');
-
+        return view('payment.success',[
+            'request' => $request->all()
+        ]);
     }
 
     public function fail(Request $request)

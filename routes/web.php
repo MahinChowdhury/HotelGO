@@ -3,6 +3,7 @@
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\facilitiesController;
 use App\Http\Controllers\newController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\roomController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\userController;
@@ -121,3 +122,6 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
+
+//Invoice Generator
+Route::post("/invoice",[newController::class,'invoice']);

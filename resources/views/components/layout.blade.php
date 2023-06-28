@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
@@ -38,7 +38,7 @@
                 @auth
                     <div class="user-profile" style="margin-right: 50px;">
                         <button class="profile-button btn">
-                            <img class="profile-image" src="{{asset('upload/users/dpnsu.jpg')}}" alt="User Image">
+                            <img class="profile-image" src="{{ asset('upload/users/' . Auth::user()->image) }}" alt="User Image">
                         </button>
                         <a href="" class="mr-2">Bookings</a>
                         <button>
@@ -50,6 +50,7 @@
                             </form>
                         </button>
                     </div>
+
                 @else
                 <a href="#" class="login_btn mr-2" data-toggle="modal" data-target="#loginModal">Login</a>
                 <li><button type="button" class="btn btn-primary" id="register_btn" data-toggle="modal" data-target="#registerModal">Register</button></li>

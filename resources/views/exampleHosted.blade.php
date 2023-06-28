@@ -58,6 +58,8 @@
             <form action="{{ url('/pay') }}" method="POST" class="needs-validation">
                 <input type="hidden" value="{{ csrf_token() }}" name="_token" />
                 <input type="hidden" name="customer_amount" value="{{$price}}"/>
+                <input type="hidden" name="booking_id" value="{{$bookingId}}"/>
+                <input type="hidden" name="user_id" value="{{$userId}}"/>
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="firstName">Full name</label>

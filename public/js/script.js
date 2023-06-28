@@ -19,6 +19,21 @@ const dropdownMenu = document.querySelector('.dropdown_menu');
 //     }
 // }
 
+
+// Toggle the profile menu
+
+$(document).ready(function() {
+    $('.profile-button').click(function(e) {
+        e.stopPropagation();
+        $('.profile-menu').toggle();
+    });
+
+    $(document).click(function() {
+        $('.profile-menu').hide();
+    });
+});
+
+
 // For video sliders
 
 //Javacript for video slider navigation
@@ -97,6 +112,8 @@ function showPayInfo() {
         payInfo.style.display = 'block'; // Show the pay info element
     }
 }
+
+// Toggle the profile menu
 
 //SSL Commerz payment gateway
 

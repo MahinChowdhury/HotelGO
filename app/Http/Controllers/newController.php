@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Facility;
 use App\Models\Rooms;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class newController extends Controller
 {
@@ -30,5 +32,23 @@ class newController extends Controller
     }
     public function about(){
         return view('about');
+    }
+
+    public function invoice(Request $request){
+
+        $tran_id = $request['tran_id'];
+
+        $bookingId = DB::table('orders')
+            ->where('transaction_id', $tran_id)
+            ->select('bookingId')->first();
+
+        $booking = DB::table('bookings')
+            ->where('id', $bookingId->bookingId)
+            ->get();
+
+        $pdf = Pdf::loadView("invoice",[
+            'bookings' => $booking
+        ]);
+        return $pdf->download("invoice.pdf");
     }
 }
