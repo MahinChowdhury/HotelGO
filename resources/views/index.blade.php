@@ -87,208 +87,62 @@
 
     <!-- <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Our Rooms</h2> -->
 
-    <div class="container bg-light pb-4 pl-4 pr-4">
+    <div class="container bg-white pb-4 pl-4 pr-4 myshadow">
         <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Our Rooms</h2>
         <div class="row">
-            <div class="col-lg-4 col-md-6 my-3">
-                <div class="card border-0 room-card myshadow" style="max-width: 350px;margin:auto;">
-                    <img class="card-img-top" src="{{asset('images/rooms/room-01.jpg')}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Simple Room name</h5>
-                        <h6 class="mb-4">$200 per night</h6>
-                        <div class="features mb-4">
-                            <h6 class="mb-1">Features</h6>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                2 Rooms
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                2 Bathroom
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                1 Balcony
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                3 Sofa
-              </span>
-                        </div>
-                        <div class="facilities mb-4">
-                            <h6 class="mb-1">Facilities</h6>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                Wifi
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                Telivision
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                AC
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                Room Heater
-              </span>
-                        </div>
-                        <div class="guests mb-4">
-                            <h6 class="mb-1">Guests</h6>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                5 Adults
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                4 Childrens
-              </span>
-                        </div>
-                        <div class="rating mb-4">
-                            <h6 class="mb-1">Rating</h6>
-                            <span class="badge rounded-pill bg-light">
+            @foreach($rooms as $room)
+                <div class="col-lg-4 col-md-6 my-3">
+                    <div class="card border-0 room-card myshadow" style="max-width: 350px;margin:auto;">
+                        <img src="{{ asset('upload/rooms/'. $room->img) }}" class="img-fluid rounded">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$room->name}}</h5>
+                            <h6 class="mb-4">${{$room->price}} per night</h6>
+                            <div class="features mb-4">
+                                <h6 class="mb-1">Features</h6>
+                                @foreach($room->features as $feature)
+                                    <span class="badge rounded-pill bg-light text-dark text-wrap">{{$feature->name}}</span>
+                                @endforeach
+                            </div>
+                            <div class="facilities mb-4">
+                                <h6 class="mb-1">Facilities</h6>
+                                @foreach($room->facilities as $facility)
+                                    <span class="badge rounded-pill bg-light text-dark text-wrap">{{$facility->name}}</span>
+                                @endforeach
+                            </div>
+                            <div class="guests mb-4">
+                                <h6 class="mb-1">Guests</h6>
+                                <span class="badge rounded-pill bg-light text-dark text-wrap">{{$room->guests}}</span>
+                            </div>
+                            <div class="rating mb-4">
+                                <h6 class="mb-1">Rating</h6>
+                                <span class="badge rounded-pill bg-light">
                 <i class="fa-solid fa-star text-warning"></i>
                 <i class="fa-solid fa-star text-warning"></i>
                 <i class="fa-solid fa-star text-warning"></i>
                 <i class="fa-solid fa-star text-warning"></i>
               </span>
-                        </div>
-                        <div class="d-flex justify-content-center" mb-2>
-                            <a href="#" class="btn btn-primary mr-2">Book Now</a>
-                            <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More
-                                Details</a>
+                            </div>
+                            <div class="d-flex justify-content-center" mb-2>
+                                <a href="#" class="btn btn-primary mr-2">Book Now</a>
+                                <a href="rooms/{{$room->id}}" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More
+                                    Details</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 my-3">
-                <div class="card border-0 room-card myshadow" style="max-width: 350px;margin:auto;">
-                    <img class="card-img-top" src="{{asset('images/rooms/room-02.jpg')}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Simple Room name</h5>
-                        <h6 class="mb-4">$200 per night</h6>
-                        <div class="features mb-4">
-                            <h6 class="mb-1">Features</h6>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                2 Rooms
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                2 Bathroom
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                1 Balcony
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                3 Sofa
-              </span>
-                        </div>
-                        <div class="facilities mb-4">
-                            <h6 class="mb-1">Facilities</h6>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                Wifi
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                Telivision
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                AC
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                Room Heater
-              </span>
-                        </div>
-                        <div class="guests mb-4">
-                            <h6 class="mb-1">Guests</h6>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                5 Adults
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                4 Childrens
-              </span>
-                        </div>
-                        <div class="rating mb-4">
-                            <h6 class="mb-1">Rating</h6>
-                            <span class="badge rounded-pill bg-light">
-                <i class="fa-solid fa-star text-warning"></i>
-                <i class="fa-solid fa-star text-warning"></i>
-                <i class="fa-solid fa-star text-warning"></i>
-                <i class="fa-solid fa-star text-warning"></i>
-              </span>
-                        </div>
-                        <div class="d-flex justify-content-center" mb-2>
-                            <a href="#" class="btn btn-primary mr-2">Book Now</a>
-                            <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More
-                                Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 my-3">
-                <div class="card border-0 room-card myshadow" style="max-width: 350px;margin:auto;">
-                    <img class="card-img-top" src="{{asset('images/rooms/room-03.jpg')}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Simple Room name</h5>
-                        <h6 class="mb-4">$200 per night</h6>
-                        <div class="features mb-4">
-                            <h6 class="mb-1">Features</h6>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                2 Rooms
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                2 Bathroom
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                1 Balcony
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                3 Sofa
-              </span>
-                        </div>
-                        <div class="facilities mb-4">
-                            <h6 class="mb-1">Facilities</h6>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                Wifi
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                Telivision
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                AC
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                Room Heater
-              </span>
-                        </div>
-                        <div class="guests mb-4">
-                            <h6 class="mb-1">Guests</h6>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                5 Adults
-              </span>
-                            <span class="badge rounded-pill bg-light text-dark text-wrap">
-                4 Childrens
-              </span>
-                        </div>
-                        <div class="rating mb-4">
-                            <h6 class="mb-1">Rating</h6>
-                            <span class="badge rounded-pill bg-light">
-                <i class="fa-solid fa-star text-warning"></i>
-                <i class="fa-solid fa-star text-warning"></i>
-                <i class="fa-solid fa-star text-warning"></i>
-                <i class="fa-solid fa-star text-warning"></i>
-              </span>
-                        </div>
-                        <div class="d-flex justify-content-center" mb-2>
-                            <a href="#" class="btn btn-primary mr-2">Book Now</a>
-                            <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More
-                                Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
             <div class="col-lg-12 text-center mt-5">
                 <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More Rooms</a>
             </div>
         </div>
     </div>
-
     <!-- Rooms section ends -->
 
     <!-- Facilities section -->
 
     <!-- <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Facilities</h2> -->
 
-    <div class="container bg-warning pb-4 pl-4 pr-4">
+    <div class="container bg-warning pb-4 pl-4 pr-4 myshadow">
         <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Facilities</h2>
         <div class="row justify-content-around px-lg-0 px-md-0 px-5">
             <div class="col-lg-2 col-md-2 text-center bg-white rounded myshadow py-4">
@@ -323,11 +177,11 @@
 
     <!-- <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Testimonials</h2> -->
 
-    <div class="container bg-light">
+    <div class="container bg-white myshadow">
         <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Testimonials</h2>
         <div class="swiper swipperTestimonial">
             <div class="swiper-wrapper mb-4">
-                <div class="swiper-slide bg-light p-4">
+                <div class="swiper-slide bg-white p-4">
                     <div class="swiper-slide bg-white myshadow p-4">
                         <div class="profile d-flex align-items-center mb-3">
                             <img src="assets/images/facilities/TV.svg" alt="" width="30px">
@@ -345,7 +199,7 @@
                     </div>
 
                 </div>
-                <div class="swiper-slide bg-light p-4">
+                <div class="swiper-slide bg-white p-4">
                     <div class="swiper-slide bg-white myshadow p-4">
                         <div class="profile d-flex align-items-center mb-3">
                             <img src="assets/images/facilities/TV.svg" alt="" width="30px">
@@ -362,7 +216,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide bg-light p-4">
+                <div class="swiper-slide bg-white p-4">
                     <div class="swiper-slide bg-white myshadow p-4">
                         <div class="profile d-flex align-items-center mb-3">
                             <img src="assets/images/facilities/TV.svg" alt="" width="30px">
@@ -392,7 +246,7 @@
 
     <!-- Contact Us section -->
 
-    <div class="container bg-info pb-2">
+    <div class="container bg-info pb-2 myshadow">
         <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Contact US</h2>
         <div class="row">
             <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-info rounded">

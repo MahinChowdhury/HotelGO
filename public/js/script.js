@@ -57,5 +57,60 @@ btns.forEach((btn, i) => {
 // Testimonial section
 
 
+//For user profile toggle
+
+
+//Confirm_booking section
+
+// Get the check-in and check-out input elements
+
+
+// Use the room price in your JavaScript code
+console.log(roomPrice);
+// Rest of your JavaScript code that uses the room price
+
+const checkinInput = document.querySelector('input[name="checkin"]');
+const checkoutInput = document.querySelector('input[name="checkout"]');
+const payInfo = document.getElementById('pay_info');
+payInfo.style.display = 'none';
+
+// Add event listeners to the input elements
+checkinInput.addEventListener('input', showPayInfo);
+checkoutInput.addEventListener('input', showPayInfo);
+
+// Function to show the pay info element
+function showPayInfo() {
+
+    // Check if both check-in and check-out inputs have values
+
+    if (checkinInput.value && checkoutInput.value) {
+
+        if(checkinInput.value >= checkoutInput.value){
+            payInfo.textContent = 'Provide valid Check-In & Check-Out dates.';
+        }
+        else{
+            let cnt_days = (new Date(checkoutInput.value) - new Date(checkinInput.value)) / (1000 * 60 * 60 * 24);
+            let price = cnt_days * roomPrice;
+            payInfo.textContent = "Total amount to pay: $" + price;
+        }
+
+        payInfo.style.display = 'block'; // Show the pay info element
+    }
+}
+
+//SSL Commerz payment gateway
+
+    (function (window, document) {
+    var loader = function () {
+    var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
+    script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+    tag.parentNode.insertBefore(script, tag);
+};
+
+    window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+})(window, document);
+
+
+
 
 console.log("Connected.");

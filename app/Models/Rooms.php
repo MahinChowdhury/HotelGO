@@ -28,4 +28,12 @@ class Rooms extends Model
         return $this->belongsToMany(Facility::class,'room_facilities','room_id','facilities_id');
     }
 
+    public function delete()
+    {
+        // Perform any additional deletion logic here
+        // For example, you might need to delete related records or perform any other necessary cleanup
+
+        return parent::delete();
+    }
+
 }

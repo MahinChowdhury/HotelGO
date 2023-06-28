@@ -42,21 +42,23 @@
                             </thead>
                             <tbody>
                             @foreach($rooms as $room)
-                                <td>{{$index = $index + 1}}</td>
-                                <td>{{$room->name}}</td>
-                                <td><img src="{{ asset('upload/rooms/'. $room->img) }}" width="40px"></td>
-                                <td>{{$room->area}}</td>
-                                <td>{{$room->guests}}</td>
-                                <td>{{$room->category}}</td>
-                                <td>{{$room->price}}</td>
-                                <td>{{$room->quantity}}</td>
-                                <td>
-                                    <form action="{{ route('rooms.destroy', $room->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                    </form>
-                                </td>
+                                <tr>
+                                    <td>{{$index = $index + 1}}</td>
+                                    <td>{{$room->name}}</td>
+                                    <td><img src="{{ asset('upload/rooms/'. $room->img) }}" width="40px"></td>
+                                    <td>{{$room->area}}</td>
+                                    <td>{{$room->guests}}</td>
+                                    <td>{{$room->category}}</td>
+                                    <td>{{$room->price}}</td>
+                                    <td>{{$room->quantity}}</td>
+                                    <td>
+                                        <form action="{{ route('rooms.destroy', $room->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>
@@ -73,6 +75,7 @@
             <div class="modal-content w-75">
                 <form method="POST" action="rooms/roomSubmit" enctype="multipart/form-data">
                     @csrf
+
                     <div class="modal-header">
                         <h5 class="modal-title text-body" id="staticBackdropLabel">Add Room</h5>
                         <button type="reset" class="close" data-dismiss="modal" aria-label="Close">

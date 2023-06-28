@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class adminController extends Controller
 {
@@ -43,6 +45,25 @@ class adminController extends Controller
 
     public function showQueries(){
         return view("admin.userqueries");
+    }
+
+    public function showUser(){
+        return view("admin.users",[
+            'users' => User::all(),
+            'index' => 0
+        ]);
+    }
+    public function destroyUser(User $user){
+        $filePath = public_path('upload/users/' . $user->image);
+
+        // Delete the file if it exists
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+        }
+
+        $user->delete();
+
+        return redirect()->back()->with('success', 'User deleted successfully');
     }
 
     protected function guard()

@@ -4,8 +4,11 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\facilitiesController;
 use App\Http\Controllers\newController;
 use App\Http\Controllers\roomController;
+use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\userQueryController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +24,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[newController::class,'index']);
 
+//Rooms Section
 Route::get('/rooms',[newController::class,'rooms']);
+Route::get("/rooms/{room}",[roomController::class,'showSingleRoom']);
 
 Route::get('/contact',[newController::class,'contact']);
 
@@ -66,6 +71,53 @@ Route::get("admin/rooms",[roomController::class,'showAdminRoomCreate']);
 Route::post("admin/rooms/roomSubmit",[roomController::class,'storeRooms']);
 Route::delete('/rooms/{room}',[roomController::class,'destroyRoom'])->name('rooms.destroy');
 
+Route::get("/confirm_booking/{room}",[roomController::class,'confirmBooking']);
+//Route::post("/confirm_booking/{room}",[roomController::class,'checkBooking']);
+
+//Admin Users management Section
+Route::get("admin/users",[adminController::class,'showUser']);
+Route::delete('/users/{user}',[adminController::class,'destroyUser'])->name('users.destroy');
+
+//Password Resetting
+
+Route::get('/forgot-password', function () {
+    return view('auth.forget-password');
+})->middleware('guest');
+
+Route::get('/reset-password/{token}', function ($token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->name('password.reset');
+
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+
+    return $status === Password::RESET_LINK_SENT
+        ? back()->with("success","Email Sent! Check your email.")
+        : back()->with("error","email sending failed.");
+})->middleware('guest')->name('password.email');
+
+Route::post('/reset-password', [userController::class,'updatePassword'])->name('password.update');
+
+
 //Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+//Route::get('/example2', [SslCommerzPaymentController::class,'exampleHostedCheckout']);
+Route::post("/confirm_booking/{room}",[SslCommerzPaymentController::class,'exampleHostedCheckout'])->middleware('auth');
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END

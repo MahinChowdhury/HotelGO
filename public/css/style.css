@@ -73,6 +73,54 @@ li{
     cursor : pointer;
     display: none;
 }
+
+.profile-toggle {
+    position: relative;
+    z-index: 9999; /* Set a higher z-index for the profile toggle menu */
+}
+
+.profile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10000; /* Set an even higher z-index for the profile menu */
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.profile-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.menu-list {
+    list-style: none;
+    padding: 5px;
+    margin: 5px;
+}
+
+.menu-list li {
+    padding: 8px 16px;
+}
+
+.menu-list li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.menu-list li a:hover {
+    background-color: #f5f5f5;
+}
+
 .login_btn{
     background-color: #00ff00;
     color: #fff;
@@ -91,8 +139,8 @@ li{
 }
 #register_btn{
     background-color: rgba(255,255,255,0.1);
-
 }
+
 #register_btn:hover{
     scale : 1.1;
     border : 3px solid #007bff;
@@ -135,6 +183,7 @@ li{
     padding: 100px 200px;
     background-color: cyan;
     position: relative;
+    z-index: 1;
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -143,7 +192,7 @@ li{
     background: #2696e9;
 }
 .home video{
-    z-index: 000;
+    z-index: 100;
     position: absolute;
     top : 0;
     left: 0;
@@ -152,7 +201,7 @@ li{
     object-fit: cover;
 }
 .home:before{
-    z-index: 600;
+    z-index: 500;
     content: '';
     position: absolute;
     background: rgba(3,96,251,0.3);
@@ -163,7 +212,7 @@ li{
 }
 
 .homecontent{
-    z-index: 888;
+    z-index: 800;
     color : #fff;
     width: 100%;
     margin-top: -100px;
@@ -193,7 +242,7 @@ li{
     border-radius: 2px;
 }
 .media-icons{
-    z-index: 888;
+    z-index: 800;
     position: absolute;
     right: 30px;
     display: flex;
@@ -347,7 +396,7 @@ li{
     height: 100%;
     width: 200px;
     position: relative;
-    top : -40px;
+    top : 0;
     z-index: 0;
     left: -100px;
     /*background-color: black;*/

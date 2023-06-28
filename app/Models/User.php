@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image'
     ];
 
     /**
@@ -42,4 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function delete()
+    {
+        // Perform any additional deletion logic here
+        // For example, you might need to delete related records or perform any other necessary cleanup
+
+        return parent::delete();
+    }
+
 }

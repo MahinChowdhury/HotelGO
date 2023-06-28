@@ -19,7 +19,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head>
-<body>
+<body class="bg-light">
 
 <x-flash-message/>
 <!-- navigation starts -->
@@ -36,15 +36,20 @@
             </ul>
             <div class="login d-flex justify-content-between">
                 @auth
-                    <h5 class="mt-1"><span class="uppercase text-white mr-4">{{auth()->user()->name}}</span></h5>
-                    <li>
-                        <form class="inline" action="/users/logout" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-dark">
-                                <i class="fa-solid fa-right-from-bracket"></i> Logout
-                            </button>
-                        </form>
-                    </li>
+                    <div class="user-profile" style="margin-right: 50px;">
+                        <button class="profile-button btn">
+                            <img class="profile-image" src="{{asset('upload/users/dpnsu.jpg')}}" alt="User Image">
+                        </button>
+                        <a href="" class="mr-2">Bookings</a>
+                        <button>
+                            <form class="inline" action="/users/logout" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-dark">
+                                    <i class="fa fa-sign-out"></i>
+                                </button>
+                            </form>
+                        </button>
+                    </div>
                 @else
                 <a href="#" class="login_btn mr-2" data-toggle="modal" data-target="#loginModal">Login</a>
                 <li><button type="button" class="btn btn-primary" id="register_btn" data-toggle="modal" data-target="#registerModal">Register</button></li>
@@ -74,7 +79,7 @@
     <div class="modal fade" id="registerModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content w-75">
-                <form action="/users/create" method="POST">
+                <form action="/users/create" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title text-body" id="staticBackdropLabel">Register</h5>
@@ -84,22 +89,26 @@
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password_confirmation" class="form-label">Confirm Password</label>
-                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
-                                </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password_confirmation" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Image</label>
+                                <input type="file" name="image" accept=".jpg , .png , .jpeg" class="form-control shadow-none">
+                            </div>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-dark ml-2">Submit</button>
@@ -135,7 +144,7 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-between">
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="">Forgot Password?</a>
+                            <a href="/forgot-password">Forgot Password?</a>
                         </div>
                     </div>
                 </form>
@@ -143,6 +152,7 @@
             </div>
         </div>
     </div>
+
 </nav>
 
 <!-- Navigation ends -->

@@ -10,7 +10,9 @@ class newController extends Controller
 {
     //
     public function index(){
-        return view('index');
+        return view('index',[
+            'rooms' => Rooms::latest()->take(3)->get()
+        ]);
     }
     public function rooms(){
         return view('rooms',[

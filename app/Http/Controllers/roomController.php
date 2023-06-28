@@ -7,8 +7,10 @@ use App\Models\Feature;
 use App\Models\Room_facilities;
 use App\Models\Room_features;
 use App\Models\Rooms;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 class roomController extends Controller
 {
@@ -28,6 +30,13 @@ class roomController extends Controller
 
         ]);
     }
+
+    public function showSingleRoom(Rooms $room){
+        return view('singleRoom',[
+           'room' => $room
+        ]);
+    }
+
     public function storeRooms(Request $request){
         $frm_data = $request->validate([
             'name' => 'required',
@@ -88,7 +97,7 @@ class roomController extends Controller
 
     public function destroyRoom(Rooms $room)
     {
-        $filePath = public_path('upload/rooms' . $room->img);
+        $filePath = public_path('upload/rooms/' . $room->img);
 
         // Delete the file if it exists
         if (File::exists($filePath)) {
@@ -99,4 +108,46 @@ class roomController extends Controller
 
         return redirect()->back()->with('success', 'Facility deleted successfully');
     }
+
+    public function confirmBooking(Rooms $room){
+        return view('confirm_booking',[
+            'room' => $room
+        ]);
+    }
+
+//    public function checkBooking(Rooms $room, Request $request)
+//    {
+//        $frm_data = $request->validate([
+//            'name' => 'required',
+//            'phone' => 'required',
+//            'address' => 'required',
+//            'checkin' => 'required',
+//            'checkout' => 'required'
+//        ]);
+//
+//        // Validate dates.
+//
+//        if ($frm_data['checkin'] > $frm_data['checkout']) {
+//            return redirect()->back()->with("error", "Enter valid Check-In and Check-Out Dates");
+//        }
+//
+//        $checkin_date = new DateTime($frm_data['checkin']);
+//        $checkout_date = new DateTime($frm_data['checkout']);
+//
+//        $cnt_days = date_diff($checkout_date, $checkin_date)->days;
+//        $price = $cnt_days * $room->price;
+//
+//        // Extract the required data and pass as separate variables
+//        $roomId = $room->id;
+//        $roomPrice = $room->price;
+//        $requestData = $request->all();
+//
+//        // Redirect to another route with the extracted variables
+//        return redirect("/example2")
+//            ->with('roomId', $roomId)
+//            ->with('roomPrice', $roomPrice)
+//            ->with('requestData', $requestData);
+//    }
+
+
 }
