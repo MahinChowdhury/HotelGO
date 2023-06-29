@@ -86,7 +86,7 @@
 </style>
 <body>
 <div class="head-title">
-    <h1 class="text-center m-0 p-0">Invoice</h1>
+    <h1 class="text-center m-0 p-0">HOTELGO</h1>
 </div>
 
 @foreach($bookings as $booking)

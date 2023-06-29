@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -65,6 +66,21 @@ class adminController extends Controller
 
         return redirect()->back()->with('success', 'User deleted successfully');
     }
+
+    public function showBookings(){
+
+        return view('admin.bookings',[
+            'bookings' => Booking::all(),
+            'index' => 0
+        ]);
+    }
+
+    public function destroyBookings(Booking $booking){
+        $booking->delete();
+
+        return redirect()->back()->with('success', 'Booking deleted successfully');
+    }
+
 
     protected function guard()
     {

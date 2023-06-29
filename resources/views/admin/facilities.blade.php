@@ -14,50 +14,6 @@
 
 
 <div class="container-fluid" style="margin-left: 200px;">
-    <div class="row">
-        <div class="col-lg-10 ms-auto p-4 overlow-hidden">
-            <h3 class="mb-4">FEATURES & FACILITIES</h3>
-            <div class="card border-0 shadow-sm mb-4">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h5 class="card-title m-0">Features</h5>
-                        <button type="button" class="btn btn-dark shadow-none btn-sm" data-toggle="modal" data-target="#feature-s">
-                            <i class="fa-solid fa-plus"></i>ADD
-                        </button>
-                    </div>
-
-                    <div class="table-responsive-md" style="height: 450px; overflow-y:scroll;">
-                        <table class="table table-hover border">
-                            <thead class="sticky-top">
-                            <tr class="bg-dark text-light">
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            @foreach($features as $feature)
-                                <tr>
-                                    <td>{{$index = $index+1}}</td>
-                                    <td>{{$feature->name}}</td>
-                                    <td>
-                                        <form action="{{ route('features.destroy', $feature->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-lg-10 ms-auto p-4 overlow-hidden">
@@ -97,6 +53,51 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-10 ms-auto p-4 overlow-hidden">
+            <h3 class="mb-4">FEATURES & FACILITIES</h3>
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 class="card-title m-0">Features</h5>
+                        <button type="button" class="btn btn-dark shadow-none btn-sm" data-toggle="modal" data-target="#feature-s">
+                            <i class="fa-solid fa-plus"></i>ADD
+                        </button>
+                    </div>
+
+                    <div class="table-responsive-md" style="height: 450px; overflow-y:scroll;">
+                        <table class="table table-hover border">
+                            <thead class="sticky-top">
+                            <tr class="bg-dark text-light">
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            @foreach($features as $feature)
+                                <tr>
+                                    <td>{{$index = $index+1}}</td>
+                                    <td>{{$feature->name}}</td>
+                                    <td>
+                                        <form action="{{ route('features.destroy', $feature->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                             </tbody>
                         </table>
                     </div>

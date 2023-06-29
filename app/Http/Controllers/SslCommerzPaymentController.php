@@ -37,6 +37,7 @@ class SslCommerzPaymentController extends Controller
         $booking->booking_name = $frm_data['name'];
         $booking->phone = $frm_data['phone'];
         $booking->user_id = Auth::user()->id;
+        $booking->payment_status = "Pending";
 
 
         if ($frm_data['checkin'] > $frm_data['checkout']) {
@@ -46,11 +47,27 @@ class SslCommerzPaymentController extends Controller
         $checkin_date = new DateTime($frm_data['checkin']);
         $checkout_date = new DateTime($frm_data['checkout']);
 
-        $booking->checkin = $checkin_date;
-        $booking->checkout = $checkout_date;
-
+        //Calculate days & Bill
         $cnt_days = date_diff($checkout_date, $checkin_date)->days;
         $price = $cnt_days * $room->price;
+
+        //Check if there exists a room between the selected date.
+
+        $result = DB::table('bookings')
+            ->select(DB::raw('COUNT(*) as count'))
+            ->where('room_name', $room->name)
+            ->where('checkin', '<', $frm_data['checkout'])
+            ->where('checkout', '>', $frm_data['checkin'])
+            ->get();
+
+        $count = $result[0]->count;
+
+        if($count>$room->quantity){
+            return redirect()->back()->with("error","Not enough room available in this date range!");
+        }
+
+        $booking->checkin = $checkin_date;
+        $booking->checkout = $checkout_date;
         $booking->amount = $price;
         $booking->days = $cnt_days;
         $booking->address = $frm_data['address'];
@@ -227,6 +244,18 @@ class SslCommerzPaymentController extends Controller
         $order_details = DB::table('orders')
             ->where('transaction_id', $tran_id)
             ->select('transaction_id', 'status', 'currency', 'amount')->first();
+
+
+        $tran_id = $request['tran_id'];
+
+        $bookingId = DB::table('orders')
+            ->where('transaction_id', $tran_id)
+            ->select('bookingId')->first();
+
+        $booking = DB::table('bookings')
+            ->where('id', $bookingId->bookingId)
+            ->update(['payment_status' => 'Processing']);
+
 
         if ($order_details->status == 'Pending') {
             $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);

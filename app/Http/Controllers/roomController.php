@@ -27,7 +27,6 @@ class roomController extends Controller
             'index' => 0,
             'selectedFacilities'=> $selectedFacilities,
             'selectedFeatures'=> $selectedFeatures,
-
         ]);
     }
 

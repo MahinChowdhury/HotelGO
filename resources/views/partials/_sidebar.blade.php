@@ -7,8 +7,9 @@
     <div class="sidebar">
         <h3 class="mb-4 text-white">ADMIN PANEL</h3>
         <a href="dashboard">Dashboard</a>
-        <a href="rooms">Rooms</a>
+        <a href="bookings">Bookings</a>
         <a href="users">Users</a>
+        <a href="rooms">Rooms</a>
         <a href="facilities">Facilities</a>
         <a href="user_queries">User Queries</a>
     </div>

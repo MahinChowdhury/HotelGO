@@ -72,12 +72,15 @@ Route::get("admin/rooms",[roomController::class,'showAdminRoomCreate']);
 Route::post("admin/rooms/roomSubmit",[roomController::class,'storeRooms']);
 Route::delete('/rooms/{room}',[roomController::class,'destroyRoom'])->name('rooms.destroy');
 
-Route::get("/confirm_booking/{room}",[roomController::class,'confirmBooking']);
-//Route::post("/confirm_booking/{room}",[roomController::class,'checkBooking']);
-
 //Admin Users management Section
 Route::get("admin/users",[adminController::class,'showUser']);
 Route::delete('/users/{user}',[adminController::class,'destroyUser'])->name('users.destroy');
+
+//Admin Booking management
+
+Route::get("admin/bookings",[adminController::class,'showBookings']);
+Route::delete('/bookings/{booking}',[adminController::class,'destroyBookings'])->name('bookings.destroy');
+
 
 //Password Resetting
 
@@ -108,10 +111,14 @@ Route::post('/reset-password', [userController::class,'updatePassword'])->name('
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get("/confirm_booking/{room}",[roomController::class,'confirmBooking']);
+//Route::post("/confirm_booking/{room}",[roomController::class,'checkBooking']);
+Route::post("/confirm_booking/{room}",[SslCommerzPaymentController::class,'exampleHostedCheckout'])->middleware('auth');
+
+
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
 //Route::get('/example2', [SslCommerzPaymentController::class,'exampleHostedCheckout']);
-Route::post("/confirm_booking/{room}",[SslCommerzPaymentController::class,'exampleHostedCheckout'])->middleware('auth');
 
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);

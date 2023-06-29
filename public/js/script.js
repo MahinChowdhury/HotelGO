@@ -95,23 +95,34 @@ checkoutInput.addEventListener('input', showPayInfo);
 
 // Function to show the pay info element
 function showPayInfo() {
+    const curDate = new Date();
+    curDate.setHours(0, 0, 0, 0); // Set the time to 00:00:00:000
 
     // Check if both check-in and check-out inputs have values
-
     if (checkinInput.value && checkoutInput.value) {
+        const checkinDate = new Date(checkinInput.value);
+        checkinDate.setHours(0, 0, 0, 0); // Set the time to 00:00:00:000
 
-        if(checkinInput.value >= checkoutInput.value){
+        const checkoutDate = new Date(checkoutInput.value);
+        checkoutDate.setHours(0, 0, 0, 0); // Set the time to 00:00:00:000
+
+        if (
+            checkinDate > checkoutDate ||
+            checkinDate < curDate ||
+            checkoutDate < curDate
+        ) {
             payInfo.textContent = 'Provide valid Check-In & Check-Out dates.';
-        }
-        else{
-            let cnt_days = (new Date(checkoutInput.value) - new Date(checkinInput.value)) / (1000 * 60 * 60 * 24);
-            let price = cnt_days * roomPrice;
-            payInfo.textContent = "Total amount to pay: $" + price;
+        } else {
+            const cnt_days = (checkoutDate - checkinDate) / (1000 * 60 * 60 * 24);
+            const price = cnt_days * roomPrice;
+            payInfo.textContent = 'Total amount to pay: $' + price;
         }
 
         payInfo.style.display = 'block'; // Show the pay info element
     }
 }
+
+
 
 // Toggle the profile menu
 

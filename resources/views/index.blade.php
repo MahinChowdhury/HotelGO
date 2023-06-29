@@ -5,8 +5,8 @@
     <div class="home">
         <video class="video-slide active" src="{{asset('videos\video(4).mp4')}}" autoplay muted loop></video>
         <video class="video-slide" src="{{asset('videos\video.mp4')}}" autoplay muted loop></video>
-        <video class="video-slide" src="{{asset('videos\video(5).mp4')}}" autoplay muted loop></video>
         <video class="video-slide" src="{{asset('videos\video(2).mp4')}}" autoplay muted loop></video>
+        <video class="video-slide" src="{{asset('videos\video(5).mp4')}}" autoplay muted loop></video>
         <video class="video-slide" src="{{asset('videos\video(7).mp4')}}" autoplay muted loop></video>
 
 
