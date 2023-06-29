@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Facility;
+use App\Models\Review;
 use App\Models\Rooms;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -13,7 +14,9 @@ class newController extends Controller
     //
     public function index(){
         return view('index',[
-            'rooms' => Rooms::latest()->take(3)->get()
+            'rooms' => Rooms::latest()->take(3)->get(),
+            'facilities' => Facility::latest()->take(5)->get(),
+            'reviews' => Review::latest()->take(3)->get()
         ]);
     }
     public function rooms(){

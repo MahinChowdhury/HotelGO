@@ -47,6 +47,8 @@
                                         <td>
                                             @if($booking->payment_status == "Pending")
                                                 <button class="btn btn-sm btn-warning">{{$booking->payment_status}}</button>
+                                            @elseif($booking->payment_status == "Canceled")
+                                                <button class="btn btn-sm btn-danger">{{$booking->payment_status}}</button>
                                             @else
                                                 <button class="btn btn-sm btn-success">{{$booking->payment_status}}</button>
                                             @endif

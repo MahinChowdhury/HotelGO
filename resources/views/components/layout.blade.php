@@ -40,7 +40,7 @@
                         <button class="profile-button btn">
                             <img class="profile-image" src="{{ asset('upload/users/' . Auth::user()->image) }}" alt="User Image">
                         </button>
-                        <a href="" class="mr-2">Bookings</a>
+                        <a href="/userBookings" class="mr-2">Bookings</a>
                         <button>
                             <form class="inline" action="/users/logout" method="POST">
                                 @csrf

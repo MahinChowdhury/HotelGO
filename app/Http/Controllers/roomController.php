@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Facility;
 use App\Models\Feature;
+use App\Models\Review;
 use App\Models\Room_facilities;
 use App\Models\Room_features;
 use App\Models\Rooms;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
@@ -31,8 +34,14 @@ class roomController extends Controller
     }
 
     public function showSingleRoom(Rooms $room){
+
+        $reviews = DB::table('reviews')
+            ->where('room_id',$room->id)
+            ->get();
+
         return view('singleRoom',[
-           'room' => $room
+           'room' => $room,
+            'reviews' => $reviews
         ]);
     }
 
@@ -109,9 +118,31 @@ class roomController extends Controller
     }
 
     public function confirmBooking(Rooms $room){
+
+        $reviews = DB::table('reviews')
+            ->where('room_id',$room->id)
+            ->get();
+
         return view('confirm_booking',[
-            'room' => $room
+            'room' => $room,
+            'reviews' => $reviews
         ]);
+    }
+
+    public function submitReview(Request $request){
+
+        $review = new Review;
+        $review->user_id = Auth::user()->id;
+        $review->user_name = Auth::user()->name;
+        $review->room_id = $request['room_id'];
+        $review->review = $request['review'];
+        $review->rating = 5;
+        $review->user_image = Auth::user()->image;
+
+        $review->save();
+
+        return redirect()->back()->with("success","Your review added Successfully");
+
     }
 
 //    public function checkBooking(Rooms $room, Request $request)

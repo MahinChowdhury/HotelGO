@@ -145,26 +145,13 @@
     <div class="container bg-warning pb-4 pl-4 pr-4 myshadow">
         <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Facilities</h2>
         <div class="row justify-content-around px-lg-0 px-md-0 px-5">
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded myshadow py-4">
-                <img src="{{asset('images/facilities/WIFI.svg')}}" alt="WIFI" width="80px">
-                <h5 class="mt-3">WIFI</h5>
-            </div>
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded myshadow py-4">
-                <img src="{{asset('images/facilities/AC.svg')}}" alt="AC" width="80px">
-                <h5 class="mt-3">AC</h5>
-            </div>
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded myshadow py-4">
-                <img src="{{asset('images/facilities/TV.svg')}}" alt="TV" width="80px">
-                <h5 class="mt-3">TV</h5>
-            </div>
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded myshadow py-4">
-                <img src="{{asset('images/facilities/HEATER.svg')}}" alt="WIFI" width="80px">
-                <h5 class="mt-3">HEATER</h5>
-            </div>
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded myshadow py-4">
-                <img src="{{asset('images/facilities/SPA.svg')}}" alt="WIFI" width="80px">
-                <h5 class="mt-3">SPA</h5>
-            </div>
+            @foreach($facilities as $facility)
+                <div class="col-lg-2 col-md-2 text-center bg-white rounded myshadow py-4">
+                    <img src="{{ asset('upload/'. $facility->icon) }}" alt="WIFI" width="80px">
+                    <h5 class="mt-3">{{$facility->name}}</h5>
+                </div>
+            @endforeach
+
             <div class="col-lg-12 text-center mt-5">
                 <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More Facilities</a>
             </div>
@@ -181,58 +168,23 @@
         <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Testimonials</h2>
         <div class="swiper swipperTestimonial">
             <div class="swiper-wrapper mb-4">
-                <div class="swiper-slide bg-white p-4">
-                    <div class="swiper-slide bg-white myshadow p-4">
-                        <div class="profile d-flex align-items-center mb-3">
-                            <img src="assets/images/facilities/TV.svg" alt="" width="30px">
-                            <h6 class="m-0 ms-2">Random User1</h6>
-                        </div>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt inventore rem quos
-                            accusantium ipsam quibusdam libero ipsum molestiae saepe nam. Eaque omnis ad nulla est sint
-                            ipsum voluptatibus, saepe modi!</p>
-                        <div class="rating">
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="swiper-slide bg-white p-4">
-                    <div class="swiper-slide bg-white myshadow p-4">
-                        <div class="profile d-flex align-items-center mb-3">
-                            <img src="assets/images/facilities/TV.svg" alt="" width="30px">
-                            <h6 class="m-0 ms-2">Random User1</h6>
-                        </div>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt inventore rem quos
-                            accusantium ipsam quibusdam libero ipsum molestiae saepe nam. Eaque omnis ad nulla est sint
-                            ipsum voluptatibus, saepe modi!</p>
-                        <div class="rating">
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
+                @foreach($reviews as $review)
+                    <div class="swiper-slide bg-white p-4">
+                        <div class="swiper-slide bg-white myshadow p-4">
+                            <div class="profile d-flex align-items-center mb-3">
+                                <img src="{{asset('upload/users/'.$review->user_image)}}" width="30px">
+                                <h6 class="m-0 ms-2 ml-2">{{$review->user_name}}</h6>
+                            </div>
+                            <p>{{$review->review}}</p>
+                            <div class="rating">
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-solid fa-star text-warning"></i>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide bg-white p-4">
-                    <div class="swiper-slide bg-white myshadow p-4">
-                        <div class="profile d-flex align-items-center mb-3">
-                            <img src="assets/images/facilities/TV.svg" alt="" width="30px">
-                            <h6 class="m-0 ms-2">Random User1</h6>
-                        </div>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt inventore rem quos
-                            accusantium ipsam quibusdam libero ipsum molestiae saepe nam. Eaque omnis ad nulla est sint
-                            ipsum voluptatibus, saepe modi!</p>
-                        <div class="rating">
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
             <div class="swiper-pagination mt-2"></div>

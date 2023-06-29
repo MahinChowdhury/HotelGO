@@ -68,50 +68,31 @@
 
 {{--        Review of Users--}}
 
-        <div class="reviewcard bg-white p-2 mb-4 shadow">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="profile d-flex align-items-center mb-3">
-                        <img src="assets/images/facilities/TV.svg" alt="" width="30px">
-                        <h6 class="m-0 ms-2">Random User1</h6>
+        @foreach($reviews as $review)
+            <div class="reviewcard bg-white p-2 mb-4 shadow">
+                <div class="row m-1">
+                    <div class="col-md-6">
+                        <div class="profile d-flex align-items-center mb-3">
+                            <img src="{{asset('upload/users/'.$review->user_image)}}" width="30px">
+                            <h6 class="m-0 ms-2 ml-2">{{$review->user_name}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="rating">
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="rating">
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                    </div>
-                </div>
+                <p>{{$review->review}}</p>
             </div>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt inventore rem quos
-                accusantium ipsam quibusdam libero ipsum molestiae saepe nam. Eaque omnis ad nulla est sint
-                ipsum voluptatibus, saepe modi!</p>
-        </div>
-        <div class="reviewcard bg-white p-2 mb-4 shadow">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="profile d-flex align-items-center mb-3">
-                        <img src="assets/images/facilities/TV.svg" alt="" width="30px">
-                        <h6 class="m-0 ms-2">Random User1</h6>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="rating">
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                    </div>
-                </div>
-            </div>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt inventore rem quos
-                accusantium ipsam quibusdam libero ipsum molestiae saepe nam. Eaque omnis ad nulla est sint
-                ipsum voluptatibus, saepe modi!</p>
-        </div>
+        @endforeach
 
-        <form class="submitReview">
+        <form action="reviewSubmit" method="POST">
+            @csrf
+            <input type="hidden" name="room_id" value="{{$room->id}}">
             <h5 class="form-label fw-bold mb-3">Write a review : </h5>
             <textarea name="review" rows="4" class="form-control shadow-none" required></textarea>
             <button type="submit" class="btn btn-sm btn-primary mt-2" style="margin-left: 1045px;">Submit</button>

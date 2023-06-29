@@ -71,6 +71,7 @@ Route::delete('/facilities/{facility}', [facilitiesController::class,'destroyFac
 Route::get("admin/rooms",[roomController::class,'showAdminRoomCreate']);
 Route::post("admin/rooms/roomSubmit",[roomController::class,'storeRooms']);
 Route::delete('/rooms/{room}',[roomController::class,'destroyRoom'])->name('rooms.destroy');
+Route::post('rooms/reviewSubmit',[roomController::class,'submitReview'])->middleware("auth");
 
 //Admin Users management Section
 Route::get("admin/users",[adminController::class,'showUser']);
@@ -132,3 +133,5 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
 //Invoice Generator
 Route::post("/invoice",[newController::class,'invoice']);
+
+Route::get("/userBookings",[userController::class,'showUserBookings'])->middleware("auth");

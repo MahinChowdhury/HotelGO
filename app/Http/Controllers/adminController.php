@@ -69,6 +69,8 @@ class adminController extends Controller
 
     public function showBookings(){
 
+
+
         return view('admin.bookings',[
             'bookings' => Booking::all(),
             'index' => 0

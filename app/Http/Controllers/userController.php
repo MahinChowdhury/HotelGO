@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 
@@ -88,6 +90,18 @@ class userController extends Controller
         return $status == Password::PASSWORD_RESET
             ? redirect("/")->with("success",'Password Changed Successfully!')
             : back()->with("error","Error changing Password!");
+    }
+
+    public function showUserBookings(){
+        $bookings = DB::table('bookings')
+            ->where('user_id',Auth::user()->id)
+            ->orderBy('id','DESC')
+            ->get();
+
+            return view('userbookings',[
+                'bookings' => $bookings,
+                'index' => 0
+            ]);
     }
 
 }
