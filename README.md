@@ -1,3 +1,11 @@
+<h3>Installation Instruction : </h3>
+
+<p>1.Git Clone the repo to xamp/htdoc folder</p>
+<p>2.Import hotelgo.sql database to PHPMYADMIN</p>
+<p>3.Copy everything from .env.example to .env file</p>
+<p>4.Install composer</p>
+<p>5.Update Composer</p>
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
