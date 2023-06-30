@@ -12,43 +12,49 @@
             <div class="col-lg-2">
                 <nav>
                     <div class="filterBar myshadow bg-light">
-                        <div class="border bg-light p-3 rounded mb-1">
-                            <h5 class="mb-3" style="font-size : 18px;">CHECK AVAILABILITY</h5>
-                            <label class="form-label">Check In</label>
-                            <input type="date" class="form-control shadow-none">
-                            <label class="form-label">Check Out</label>
-                            <input type="date" class="form-control shadow-none">
-                        </div>
+                        <form action="{{ route('rooms.search') }}" method="POST">
+                            @csrf
 
-                        <div class="border bg-light p-3 rounded mb-1">
-                            <h5 class="" style="font-size : 18px;">CATEGORIES</h5>
-                            <div class="ml-3 mb-2">
-                                <input type="checkbox" id="f1" class="form-check-input shadow-none me-1">
-                                <label class="form-check-label" for="f1">Small</label>
+                            <div class="border bg-light p-3 rounded mb-1">
+                                <h5 class="mb-3" style="font-size: 18px;">CHECK AVAILABILITY</h5>
+                                <label class="form-label">Check In</label>
+                                <input type="date" name="check_in" class="form-control shadow-none">
+                                <label class="form-label">Check Out</label>
+                                <input type="date" name="check_out" class="form-control shadow-none">
                             </div>
-                            <div class="ml-3 mb-2">
-                                <input type="checkbox" id="f2" class="form-check-input shadow-none me-1">
-                                <label class="form-check-label" for="f2">Medium</label>
-                            </div>
-                            <div class="ml-3 mb-2">
-                                <input type="checkbox" id="f3" class="form-check-input shadow-none me-1">
-                                <label class="form-check-label" for="f3">Deluxe</label>
-                            </div>
-                        </div>
 
-                        <div class="border bg-light p-3 rounded mb-3">
-                            <h5 class="mb-3" style="font-size : 18px;">PRICE</h5>
-                            <div class="d-flex">
-                                <div class="mr-2">
-                                    <label class="form-label">Minimum</label>
-                                    <input type="number" class="form-control shadow-none">
+                            <div class="border bg-light p-3 rounded mb-1">
+                                <h5 class="" style="font-size: 18px;">CATEGORIES</h5>
+                                <div class="ml-3 mb-2">
+                                    <input type="checkbox" name="categories[]" id="f1" value="Small" class="form-check-input shadow-none me-1">
+                                    <label class="form-check-label" for="f1">Small</label>
                                 </div>
-                                <div>
-                                    <label class="form-label">Maximum</label>
-                                    <input type="number" class="form-control shadow-none">
+                                <div class="ml-3 mb-2">
+                                    <input type="checkbox" name="categories[]" id="f2" value="Medium" class="form-check-input shadow-none me-1">
+                                    <label class="form-check-label" for="f2">Medium</label>
+                                </div>
+                                <div class="ml-3 mb-2">
+                                    <input type="checkbox" name="categories[]" id="f3" value="Deluxe" class="form-check-input shadow-none me-1">
+                                    <label class="form-check-label" for="f3">Deluxe</label>
                                 </div>
                             </div>
-                        </div>
+
+                            <div class="border bg-light p-3 rounded mb-2">
+                                <h5 class="mb-3" style="font-size: 18px;">PRICE</h5>
+                                <div class="d-flex">
+                                    <div class="mr-2">
+                                        <label class="form-label">Minimum</label>
+                                        <input type="number" name="min_price" class="form-control shadow-none">
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Maximum</label>
+                                        <input type="number" name="max_price" class="form-control shadow-none">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-sm mb-3" style="margin-left: 50px;">Search</button>
+                        </form>
 
                     </div>
                 </nav>

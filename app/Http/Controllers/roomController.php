@@ -145,6 +145,52 @@ class roomController extends Controller
 
     }
 
+    public function searchFilter(Request $request)
+    {
+        $query = Rooms::query();
+
+        // Check-in and Check-out dates
+        $checkIn = $request->input('check_in');
+        $checkOut = $request->input('check_out');
+
+        if ($checkIn && $checkOut) {
+            $query->whereDoesntHave('bookings', function ($subquery) use ($checkIn, $checkOut) {
+                $subquery->where(function ($query) use ($checkIn, $checkOut) {
+                    $query->where('checkin', '<=', $checkOut)
+                        ->where('checkout', '>=', $checkIn);
+                });
+            })->where('quantity', '>=', DB::raw('(SELECT COUNT(*) FROM bookings WHERE rooms_id = rooms.id)+1'));
+        }
+
+
+
+
+        // Categories
+        $categories = $request->input('categories');
+
+        if ($categories) {
+            $query->whereIn('category', $categories);
+        }
+
+        // Price range
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
+
+        if ($minPrice) {
+            $query->where('price', '>=', $minPrice);
+        }
+
+        if ($maxPrice) {
+            $query->where('price', '<=', $maxPrice);
+        }
+
+        $rooms = $query->get();
+
+        return view('rooms', ['rooms' => $rooms]);
+    }
+
+
+
 //    public function checkBooking(Rooms $room, Request $request)
 //    {
 //        $frm_data = $request->validate([

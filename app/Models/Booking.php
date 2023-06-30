@@ -17,4 +17,11 @@ class Booking extends Model
 
         return parent::delete();
     }
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class, 'rooms_id', 'id');
+    }
+
+
 }

@@ -135,3 +135,5 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 Route::post("/invoice",[newController::class,'invoice']);
 
 Route::get("/userBookings",[userController::class,'showUserBookings'])->middleware("auth");
+
+Route::post('/rooms/search', [roomController::class,'searchFilter'])->name('rooms.search');

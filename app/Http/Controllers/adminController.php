@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class adminController extends Controller
@@ -41,7 +42,16 @@ class adminController extends Controller
     }
 
     public function showDashboard(){
-        return view("admin.dashboard");
+
+        $users_count = DB::select("SELECT COUNT(*) AS user_count FROM users")[0]->user_count;
+        $rooms_count = DB::select("SELECT COUNT(*) AS room_count FROM rooms")[0]->room_count;
+        $bookings_count = DB::select("SELECT COUNT(*) AS booking_count FROM bookings")[0]->booking_count;
+
+        return view("admin.dashboard",[
+            'users_cnt' => $users_count,
+            'bookings_cnt' => $bookings_count,
+            'rooms_cnt' => $rooms_count
+        ]);
     }
 
     public function showQueries(){

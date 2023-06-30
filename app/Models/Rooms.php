@@ -28,6 +28,11 @@ class Rooms extends Model
         return $this->belongsToMany(Facility::class,'room_facilities','room_id','facilities_id');
     }
 
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
     public function delete()
     {
         // Perform any additional deletion logic here
