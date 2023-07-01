@@ -145,6 +145,7 @@ class roomController extends Controller
 
     }
 
+
     public function searchFilter(Request $request)
     {
         $query = Rooms::query();
@@ -152,18 +153,6 @@ class roomController extends Controller
         // Check-in and Check-out dates
         $checkIn = $request->input('check_in');
         $checkOut = $request->input('check_out');
-
-        if ($checkIn && $checkOut) {
-            $query->whereDoesntHave('bookings', function ($subquery) use ($checkIn, $checkOut) {
-                $subquery->where(function ($query) use ($checkIn, $checkOut) {
-                    $query->where('checkin', '<=', $checkOut)
-                        ->where('checkout', '>=', $checkIn);
-                });
-            })->where('quantity', '>=', DB::raw('(SELECT COUNT(*) FROM bookings WHERE rooms_id = rooms.id)+1'));
-        }
-
-
-
 
         // Categories
         $categories = $request->input('categories');
@@ -184,12 +173,27 @@ class roomController extends Controller
             $query->where('price', '<=', $maxPrice);
         }
 
+        if ($checkIn && $checkOut) {
+            $rooms = Rooms::all();
+
+            foreach ($rooms as $room) {
+                $tb_query = DB::table('bookings')
+                    ->where('rooms_id', $room->id)
+                    ->where('checkin', '<', $checkOut)
+                    ->where('checkout', '>', $checkIn)
+                    ->select(DB::raw('COUNT(*) as cnt'))
+                    ->get();
+
+                if ($room->quantity - $tb_query[0]->cnt > 0) {
+                    $query->orWhere('id', $room->id);
+                }
+            }
+        }
+
         $rooms = $query->get();
 
         return view('rooms', ['rooms' => $rooms]);
     }
-
-
 
 //    public function checkBooking(Rooms $room, Request $request)
 //    {

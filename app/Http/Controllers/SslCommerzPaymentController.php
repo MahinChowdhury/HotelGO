@@ -38,7 +38,7 @@ class SslCommerzPaymentController extends Controller
         $booking->phone = $frm_data['phone'];
         $booking->user_id = Auth::user()->id;
         $booking->payment_status = "Pending";
-
+        $booking->rooms_id = $room->id;
 
         if ($frm_data['checkin'] > $frm_data['checkout']) {
             return redirect()->back()->with("error", "Enter valid Check-In and Check-Out Dates");
@@ -63,7 +63,8 @@ class SslCommerzPaymentController extends Controller
         $count = $result[0]->count;
 
         if($count>$room->quantity){
-            return redirect()->back()->with("error","Not enough room available in this date range!");
+            //return redirect()->back()->with("error","Not enough room available in this date range!");
+            //Add this rows to our query variable
         }
 
         $booking->checkin = $checkin_date;

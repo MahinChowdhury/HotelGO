@@ -113,6 +113,7 @@ Route::post('/reset-password', [userController::class,'updatePassword'])->name('
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get("/confirm_booking/{room}",[roomController::class,'confirmBooking']);
+Route::get("rooms/confirm_booking/{room}",[roomController::class,'confirmBooking']);
 //Route::post("/confirm_booking/{room}",[roomController::class,'checkBooking']);
 Route::post("/confirm_booking/{room}",[SslCommerzPaymentController::class,'exampleHostedCheckout'])->middleware('auth');
 
