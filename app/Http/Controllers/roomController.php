@@ -198,7 +198,6 @@ class roomController extends Controller
 
 
 
-
 //    public function checkBooking(Rooms $room, Request $request)
 //    {
 //        $frm_data = $request->validate([
