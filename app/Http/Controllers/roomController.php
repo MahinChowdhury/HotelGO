@@ -150,6 +150,8 @@ class roomController extends Controller
     {
         $query = Rooms::query();
 
+
+
         // Check-in and Check-out dates
         $checkIn = $request->input('check_in');
         $checkOut = $request->input('check_out');
@@ -174,7 +176,7 @@ class roomController extends Controller
         }
 
         if ($checkIn && $checkOut) {
-            $rooms = Rooms::all();
+            $rooms = $query;
 
             foreach ($rooms as $room) {
                 $tb_query = DB::table('bookings')
@@ -189,7 +191,6 @@ class roomController extends Controller
                 }
             }
         }
-
 
         $rooms = $query->get();
 
