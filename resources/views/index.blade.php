@@ -43,35 +43,31 @@
         <div class="row">
             <div class="col-lg-12 bg-white shadow p-4 rounded available-box mt-4">
                 <h5 class="mb-4">Check Booking Availability</h5>
-                <form action="">
+                <form action="{{ route('rooms.search') }}" method="POST">
+                    @csrf
                     <div class="row align-items-center ">
                         <div class="col-lg-3 mb-3">
                             <label class="form-label" style="font-weight:500;">Check In</label>
-                            <input type="date" class="form-control shadow-none">
+                            <input type="date" class="form-control shadow-none" name="check_in">
                         </div>
                         <div class="col-lg-3 mb-3">
                             <label class="form-label" style="font-weight:500;">Check Out</label>
-                            <input type="date" class="form-control shadow-none">
+                            <input type="date" class="form-control shadow-none" name="check_out">
                         </div>
-                        <div class="col-lg-2 mb-3 mr-5">
-                            <label class="form-label" style="font-weight:500;">Adult</label>
-                            <select class="form-select shadow-none">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
+                        <div class="col-lg-2 mb-3">
+                            <div class="mr-2">
+                                <label class="form-label">Minimum Price</label>
+                                <input type="number" name="min_price" class="form-control shadow-none">
+                            </div>
                         </div>
-                        <div class="col-lg-2 mr-4 mb-3">
-                            <label class="form-label" style="font-weight:500;">Children</label>
-                            <select class="form-select shadow-none">
-                                <option selected>Open this select menu</option>
-                                <option value="0">Zero</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
+
+                        <div class="col-lg-2 mb-3">
+                            <div>
+                                <label class="form-label">Maximum Price</label>
+                                <input type="number" name="max_price" class="form-control shadow-none">
+                            </div>
                         </div>
+
                         <div class="col-lg-1 ml-2 mt-3">
                             <button type="submit" class="btn btn-primary text-white shadow-none">Search</button>
                         </div>

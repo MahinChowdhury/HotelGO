@@ -190,10 +190,14 @@ class roomController extends Controller
             }
         }
 
+
         $rooms = $query->get();
 
         return view('rooms', ['rooms' => $rooms]);
     }
+
+
+
 
 //    public function checkBooking(Rooms $room, Request $request)
 //    {
