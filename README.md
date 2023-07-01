@@ -65,14 +65,14 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 
 ## Project Visuals :
 
-<a href="https://ibb.co/kMXmygp"><img src="https://i.ibb.co/b7Xb3gx/Screenshot-42.png" alt="Screenshot-42" border="0" style="margin-bottom:20px;"></a>
-<a href="https://ibb.co/Cw3Nz3M"><img src="https://i.ibb.co/dfw1rwL/Screenshot-44.png" alt="Screenshot-44" border="0" style="margin-bottom:20px;"></a>
-<a href="https://ibb.co/sH4L7jM"><img src="https://i.ibb.co/5F3qZTf/Screenshot-46.png" alt="Screenshot-46" border="0" style="margin-bottom:20px;"></a>
-<a href="https://ibb.co/LrzY3HF"><img src="https://i.ibb.co/G9vnqN6/Screenshot-47.png" alt="Screenshot-47" border="0" style="margin-bottom:20px;"></a>
-<a href="https://ibb.co/tswKSQr"><img src="https://i.ibb.co/vPCqbVn/Screenshot-48.png" alt="Screenshot-48" border="0" style="margin-bottom:20px;"></a>
-<a href="https://ibb.co/dcbbmwN"><img src="https://i.ibb.co/SxQQf4k/Screenshot-49.png" alt="Screenshot-49" border="0" style="margin-bottom:20px;"></a>
-<a href="https://ibb.co/GQyNYcY"><img src="https://i.ibb.co/YBmwnpn/Screenshot-50.png" alt="Screenshot-50" border="0" style="margin-bottom:20px;"></a>
-<a href="https://ibb.co/Tqgnsg5"><img src="https://i.ibb.co/Pz6bd68/Screenshot-51.png" alt="Screenshot-51" border="0" style="margin-bottom:20px;"></a>
-<a href="https://ibb.co/nCnHcZB"><img src="https://i.ibb.co/pyRtzGQ/Screenshot-52.png" alt="Screenshot-52" border="0" style="margin-bottom:20px;"></a>
-<a href="https://ibb.co/RyCjqDr"><img src="https://i.ibb.co/k1hmtSb/Screenshot-53.png" alt="Screenshot-53" border="0" style="margin-bottom:20px;"></a>
-<a href="https://ibb.co/Kbcygy3"><img src="https://i.ibb.co/DzPKFKS/Screenshot-54.png" alt="Screenshot-54" border="0" style="margin-bottom:20px;"></a>
+<a href="https://ibb.co/kMXmygp"><img src="https://i.ibb.co/b7Xb3gx/Screenshot-42.png" border="0" style="margin-bottom:20px;"></a>
+<a href="https://ibb.co/Cw3Nz3M"><img src="https://i.ibb.co/dfw1rwL/Screenshot-44.png" border="0" style="margin-bottom:20px;"></a>
+<a href="https://ibb.co/sH4L7jM"><img src="https://i.ibb.co/5F3qZTf/Screenshot-46.png" border="0" style="margin-bottom:20px;"></a>
+<a href="https://ibb.co/LrzY3HF"><img src="https://i.ibb.co/G9vnqN6/Screenshot-47.png" border="0" style="margin-bottom:20px;"></a>
+<a href="https://ibb.co/tswKSQr"><img src="https://i.ibb.co/vPCqbVn/Screenshot-48.png" border="0" style="margin-bottom:20px;"></a>
+<a href="https://ibb.co/dcbbmwN"><img src="https://i.ibb.co/SxQQf4k/Screenshot-49.png" border="0" style="margin-bottom:20px;"></a>
+<a href="https://ibb.co/GQyNYcY"><img src="https://i.ibb.co/YBmwnpn/Screenshot-50.png" border="0" style="margin-bottom:20px;"></a>
+<a href="https://ibb.co/Tqgnsg5"><img src="https://i.ibb.co/Pz6bd68/Screenshot-51.png" border="0" style="margin-bottom:20px;"></a>
+<a href="https://ibb.co/nCnHcZB"><img src="https://i.ibb.co/pyRtzGQ/Screenshot-52.png" border="0" style="margin-bottom:20px;"></a>
+<a href="https://ibb.co/RyCjqDr"><img src="https://i.ibb.co/k1hmtSb/Screenshot-53.png" border="0" style="margin-bottom:20px;"></a>
+<a href="https://ibb.co/Kbcygy3"><img src="https://i.ibb.co/DzPKFKS/Screenshot-54.png" border="0" style="margin-bottom:20px;"></a>
