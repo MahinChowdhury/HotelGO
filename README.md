@@ -1,5 +1,4 @@
 ## Installation Instruction : 
-<hr>
 
 ```
 1. Git Clone the repo to your xamp/htdocs folder
@@ -30,7 +29,6 @@
 
 
 ## Admin Section : 
-<hr>
 
 ```
 Redirect to "localhost:8000/admin/login"
