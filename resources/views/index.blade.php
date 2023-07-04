@@ -128,7 +128,7 @@
                 </div>
             @endforeach
             <div class="col-lg-12 text-center mt-5">
-                <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More Rooms</a>
+                <a href="/rooms" class="btn btn-sm btn-outline-dark shadow-none">More Rooms</a>
             </div>
         </div>
     </div>
@@ -149,7 +149,7 @@
             @endforeach
 
             <div class="col-lg-12 text-center mt-5">
-                <a href="#" class="btn btn-sm btn-outline-dark shadow-none">More Facilities</a>
+                <a href="/facilities" class="btn btn-sm btn-outline-dark shadow-none">More Facilities</a>
             </div>
         </div>
     </div>

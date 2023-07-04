@@ -173,11 +173,11 @@
         </div>
         <div class="col-lg-4 p-4">
             <h5 class="mb-3">Links</h5>
-            <a href="" class="d-inline-block mb-2 text-white text-decoration-none">Home</a><br>
-            <a href="" class="d-inline-block mb-2 text-white text-decoration-none">Rooms</a><br>
-            <a href="" class="d-inline-block mb-2 text-white text-decoration-none">Facilities</a><br>
-            <a href="" class="d-inline-block mb-2 text-white text-decoration-none">Contact US</a><br>
-            <a href="" class="d-inline-block mb-2 text-white text-decoration-none">About</a>
+            <a href="/" class="d-inline-block mb-2 text-white text-decoration-none">Home</a><br>
+            <a href="/rooms" class="d-inline-block mb-2 text-white text-decoration-none">Rooms</a><br>
+            <a href="/facilities" class="d-inline-block mb-2 text-white text-decoration-none">Facilities</a><br>
+            <a href="/contact" class="d-inline-block mb-2 text-white text-decoration-none">Contact US</a><br>
+            <a href="/about" class="d-inline-block mb-2 text-white text-decoration-none">About</a>
         </div>
         <div class="col-lg-4 p-4">
             <h5>Follow US : </h5>
