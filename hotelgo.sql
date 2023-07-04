@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 30, 2023 at 02:18 PM
+-- Generation Time: Jul 01, 2023 at 08:19 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -55,6 +55,7 @@ CREATE TABLE `bookings` (
   `id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `room_name` varchar(255) NOT NULL,
+  `rooms_id` bigint(20) UNSIGNED NOT NULL,
   `amount` int(11) NOT NULL,
   `booking_name` varchar(255) NOT NULL,
   `checkin` date NOT NULL,
@@ -73,12 +74,14 @@ CREATE TABLE `bookings` (
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `user_name`, `room_name`, `amount`, `booking_name`, `checkin`, `checkout`, `days`, `booking_date`, `phone`, `updated_at`, `created_at`, `user_id`, `address`, `payment_status`) VALUES
-(12, 'Mahin', 'Mountain View', 2500, 'Mahin', '2023-06-29', '2023-07-04', 5, '2023-06-29 11:09:16', '01839963763', '2023-06-29 05:09:16', '2023-06-29 05:09:16', 8, 'Dhaka,Bangladesh', 'Processing'),
-(13, 'Rifat Morshed Rahat', 'Forest View', 1800, 'Rifat', '2023-07-04', '2023-07-08', 4, '2023-06-29 14:18:37', '01774577211', '2023-06-29 08:18:37', '2023-06-29 08:18:37', 9, 'Mohammadpur,Dhaka', 'Processing'),
-(14, 'Ehsanul Karim Talha', 'Deluxe Room', 1950, 'Talha', '2023-07-02', '2023-07-05', 3, '2023-06-29 14:35:22', '01871212436', '2023-06-29 08:35:22', '2023-06-29 08:35:22', 10, 'Mirpur,Dhaka', 'Canceled'),
-(15, 'Ehsanul Karim Talha', 'Deluxe Room', 1950, 'Ehsanul Karim Talha', '2023-07-04', '2023-07-07', 3, '2023-06-29 14:36:21', '01871212436', '2023-06-29 08:36:21', '2023-06-29 08:36:21', 10, 'Mirpur,Dhaka', 'Pending'),
-(16, 'Ehsanul Karim Talha', 'Mountain View', 1000, 'Ehsanul Karim Talha', '2023-07-02', '2023-07-04', 2, '2023-06-29 14:43:59', '01871212436', '2023-06-29 08:43:59', '2023-06-29 08:43:59', 10, 'Mirpur,Dhaka', 'Processing');
+INSERT INTO `bookings` (`id`, `user_name`, `room_name`, `rooms_id`, `amount`, `booking_name`, `checkin`, `checkout`, `days`, `booking_date`, `phone`, `updated_at`, `created_at`, `user_id`, `address`, `payment_status`) VALUES
+(12, 'Mahin', 'Mountain View', 13, 2500, 'Mahin', '2023-06-29', '2023-07-04', 5, '2023-06-29 11:09:16', '01839963763', '2023-06-29 05:09:16', '2023-06-29 05:09:16', 8, 'Dhaka,Bangladesh', 'Processing'),
+(13, 'Rifat Morshed Rahat', 'Forest View', 11, 1800, 'Rifat', '2023-07-04', '2023-07-08', 4, '2023-06-29 14:18:37', '01774577211', '2023-06-29 08:18:37', '2023-06-29 08:18:37', 9, 'Mohammadpur,Dhaka', 'Processing'),
+(14, 'Ehsanul Karim Talha', 'Deluxe Room', 12, 1950, 'Talha', '2023-07-02', '2023-07-05', 3, '2023-06-29 14:35:22', '01871212436', '2023-06-29 08:35:22', '2023-06-29 08:35:22', 10, 'Mirpur,Dhaka', 'Canceled'),
+(15, 'Ehsanul Karim Talha', 'Deluxe Room', 12, 1950, 'Ehsanul Karim Talha', '2023-07-04', '2023-07-07', 3, '2023-06-29 14:36:21', '01871212436', '2023-06-29 08:36:21', '2023-06-29 08:36:21', 10, 'Mirpur,Dhaka', 'Pending'),
+(16, 'Ehsanul Karim Talha', 'Mountain View', 13, 1000, 'Ehsanul Karim Talha', '2023-07-02', '2023-07-04', 2, '2023-06-29 14:43:59', '01871212436', '2023-06-29 08:43:59', '2023-06-29 08:43:59', 10, 'Mirpur,Dhaka', 'Processing'),
+(17, 'Mahin', 'Deluxe Room', 12, 1950, 'Mahin', '2023-07-03', '2023-07-06', 3, '2023-07-01 09:31:29', '01839963763', '2023-07-01 03:31:29', '2023-07-01 03:31:29', 8, 'Dhaka,Bangladesh', 'Pending'),
+(18, 'Mahin', 'Forest View', 11, 3150, 'Mahin', '2023-07-04', '2023-07-11', 7, '2023-07-01 12:10:28', '01839963763', '2023-07-01 06:10:28', '2023-07-01 06:10:28', 8, 'Dhaka,Bangladesh', 'Processing');
 
 -- --------------------------------------------------------
 
@@ -185,7 +188,8 @@ INSERT INTO `orders` (`id`, `name`, `email`, `phone`, `amount`, `address`, `stat
 (58, 'Rifat', 'rifat18@gmail.com', '01774577211', 1800, 'Mohammadpur,Dhaka', 'Processing', '649d92cb8398f', 'BDT', 13, 9),
 (59, 'Talha', 'talha39@gmail.com', '01871212436', 1950, 'Mirpur,Dhaka', 'Canceled', '649d96b4e9c44', 'BDT', 14, 10),
 (60, 'Ehsanul Karim Talha', 'talha39@gmail.com', '01871212436', 1950, 'Mirpur,Dhaka', 'Pending', '649d96f61f545', 'BDT', 15, 10),
-(61, 'Ehsanul Karim Talha', 'talha39@gmail.com', '01871212436', 1000, 'Mirpur,Dhaka', 'Processing', '649d98b70e717', 'BDT', 16, 10);
+(61, 'Ehsanul Karim Talha', 'talha39@gmail.com', '01871212436', 1000, 'Mirpur,Dhaka', 'Processing', '649d98b70e717', 'BDT', 16, 10),
+(62, 'Mahin', 'mahin00021@gmail.com', '01839963763', 3150, 'Dhaka,Bangladesh', 'Processing', '64a017c19bb7c', 'BDT', 18, 8);
 
 -- --------------------------------------------------------
 
@@ -282,9 +286,9 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `area`, `guests`, `category`, `description`, `img`, `price`, `quantity`, `created_at`, `updated_at`) VALUES
-(10, 'SkyView', '1200', '2', 'medium', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi dicta illo inventore ipsum laboriosam laudantium modi natus odit voluptas voluptates! Id necessitatibus, possimus. Commodi deserunt eos id ipsam nam provident?\r\n', 'room_demo-01.jpg', 200, 1, '2023-06-26 03:56:14', '2023-06-26 03:56:14'),
+(10, 'SkyView', '1200', '2', 'small', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi dicta illo inventore ipsum laboriosam laudantium modi natus odit voluptas voluptates! Id necessitatibus, possimus. Commodi deserunt eos id ipsam nam provident?\r\n', 'room_demo-01.jpg', 200, 1, '2023-06-26 03:56:14', '2023-06-26 03:56:14'),
 (11, 'Forest View', '1600', '4', 'medium', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus delectus exercitationem iusto sapiente! Adipisci, at delectus ex hic odio quibusdam temporibus. Animi eligendi necessitatibus perferendis ratione rerum soluta sunt. Exercitationem.', 'room-01.jpg', 450, 3, '2023-06-26 10:08:13', '2023-06-26 10:08:13'),
-(12, 'Deluxe Room', '1800', '6', 'deluxe', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam blanditiis cum dolor dolore fugiat hic ipsum iusto modi nemo obcaecati optio quisquam, quos repellendus sit soluta, voluptates voluptatibus. Error, ex?1', 'room-03.jpg', 650, 4, '2023-06-27 04:50:35', '2023-06-27 04:50:35'),
+(12, 'Deluxe Room', '1800', '6', 'deluxe', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam blanditiis cum dolor dolore fugiat hic ipsum iusto modi nemo obcaecati optio quisquam, quos repellendus sit soluta, voluptates voluptatibus. Error, ex?1', 'room-03.jpg', 650, 3, '2023-06-27 04:50:35', '2023-06-27 04:50:35'),
 (13, 'Mountain View', '1500', '3', 'medium', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur dolorem esse illo in ipsam laudantium reiciendis repellat repellendus tempore velit? Culpa dignissimos dolore excepturi minima numquam praesentium. Fugit, natus, necessitatibus.', 'room-02.jpg', 500, 4, '2023-06-27 05:22:50', '2023-06-27 05:22:50');
 
 -- --------------------------------------------------------
@@ -435,7 +439,8 @@ ALTER TABLE `admins`
 -- Indexes for table `bookings`
 --
 ALTER TABLE `bookings`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `book_room_Id` (`rooms_id`);
 
 --
 -- Indexes for table `facilities`
@@ -544,7 +549,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `facilities`
@@ -568,7 +573,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -615,6 +620,12 @@ ALTER TABLE `user_queries`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD CONSTRAINT `book_room_Id` FOREIGN KEY (`rooms_id`) REFERENCES `rooms` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `room_facilities`
